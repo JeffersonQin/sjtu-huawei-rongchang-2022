@@ -14,7 +14,7 @@ install.ps1
 
 ## 训练
 
-1. 在 `wrc/data/labeled` 下放置 COCO 格式的数据集
+1. 在 `wrc/data/labeled` 下分别放置 COCO 格式的训练集 `train` 和测试集 `val`
 2. 训练
    ```
    cd wrc/mmdetection
