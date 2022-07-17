@@ -1,7 +1,7 @@
 # dataset settings
 dataset_type = 'wrc'
-data_root_train = '../data/labeled/train'
-data_root_val = '../data/labeled/val'
+data_root_train = '../data/labeled/train/'
+data_root_val = '../data/labeled/val/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
