@@ -9,7 +9,7 @@ install.ps1
 * 首先准备好 `labelme` 标注好的数据
 * 使用脚本划分数据集，其中 `<dataset_foler>` 是数据集的路径，`<ratio>` 为划分比例，即多少张图片中抽一张作为 validation，目前只支持整数。输出 COCO 数据集文件夹为原来数据集下的 `train` 和 `val`
   ```python
-  python tools/splitter.py <dataset_folder> <ratio>
+  python scripts/splitter.py <dataset_folder> <ratio>
   ```
 
 ## 训练
