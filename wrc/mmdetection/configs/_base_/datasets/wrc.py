@@ -36,6 +36,7 @@ train_pipeline = [
             'gt_masks': 'masks',
             'gt_bboxes': 'bboxes'
         },
+		skip_img_without_anno=True,
     ),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -52,33 +53,6 @@ test_pipeline = [
             dict(type='RandomCrop', crop_size=(0.7, 0.7), crop_type='relative_range'),
             dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),
-            dict(type='Albu', 
-                transforms=[
-                    dict(type='MultiplicativeNoise', multiplier=[0.5, 1.5], elementwise=True, p=0.3),
-                    dict(type='ImageCompression', quality_lower=0, quality_upper=20, p=0.5),
-                    dict(type='PixelDropout', dropout_prob=0.08, per_channel=False, drop_value=0, mask_drop_value=None, p=0.4),
-                    dict(type='RandomBrightnessContrast', brightness_limit=[-0.2, 0.2], contrast_limit=[-0.2, 0.2], p=0.3),
-                    dict(
-                        type='OneOf',
-                        transforms=[
-                            dict(type='Blur', blur_limit=3, p=1.0),
-                            dict(type='MedianBlur', blur_limit=3, p=1.0),
-                        ],
-                        p=0.3
-                    ),
-                ],
-                bbox_params=dict(
-                    type='BboxParams',
-                    format='pascal_voc',
-                    label_fields=['gt_labels'],
-                    min_visibility=0.0,
-                    filter_lost_elements=True),
-                keymap={
-                    'img': 'image',
-                    'gt_masks': 'masks',
-                    'gt_bboxes': 'bboxes'
-                },
-            ),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Pad', size_divisor=32),
             dict(type='ImageToTensor', keys=['img']),
