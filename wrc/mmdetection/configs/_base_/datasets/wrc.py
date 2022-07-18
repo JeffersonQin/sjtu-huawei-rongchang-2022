@@ -7,7 +7,6 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='RandomCrop', crop_size=(0.7, 0.7), crop_type='relative_range'),
     dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Albu', 
@@ -50,7 +49,6 @@ test_pipeline = [
         img_scale=(1333, 800),
         flip=False,
         transforms=[
-            dict(type='RandomCrop', crop_size=(0.7, 0.7), crop_type='relative_range'),
             dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
